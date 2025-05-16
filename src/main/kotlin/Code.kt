@@ -10,7 +10,7 @@ internal class Code : SyntaxLines {
 
 
     override fun matchStart(text: String): Boolean {
-        val matches: Boolean = "^```[^`]*$".toRegex().matches(text)
+        val matches: Boolean = "^\\s*```[^`]*$".toRegex().matches(text)
         if (!matches) return false
         language = "[^`]*$".toRegex().find(text)?.value ?: "文本"
         sb.clear()
@@ -20,7 +20,7 @@ internal class Code : SyntaxLines {
     }
 
     override fun matchEnd(text: String): Result<Boolean, StringBuilder> {
-        val matches: Boolean = "^```.*$".toRegex().matches(text)
+        val matches: Boolean = "^\\s*```.*$".toRegex().matches(text)
         if (!matches) sb.append(text).append('\n')
         else {
             sb.append(language).append('』')

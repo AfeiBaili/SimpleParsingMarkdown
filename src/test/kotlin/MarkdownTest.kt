@@ -27,7 +27,7 @@ class MarkdownTest {
     @Test
     fun test2() {
         val text = "| 你好 | 打    |  好滴       |"
-        "(?<=\\|)\\s*([^|]*?)\\s*(?=\\|)".toRegex().findAll(text).forEach { println(it.groupValues[1]) }
+        println("\\s*\\|(\\s*(.*)\\s*\\|)+(?!.)".toRegex().matches(text))
     }
 
     @Test
